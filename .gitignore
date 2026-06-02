@@ -1,0 +1,15 @@
+# Python
+backend/venv/
+backend/__pycache__/
+*.pyc
+
+# Variables de entorno
+backend/.env
+
+# macOS
+.DS_Store
+
+# Xcode / iOS (básico por ahora)
+ios-app/.add-points/
+ios-app/DerivedData/
+ios-app/*.xcuserstate
