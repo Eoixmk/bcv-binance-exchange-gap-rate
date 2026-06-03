@@ -39,10 +39,36 @@ Ejemplo:
 
 ```env
 BCV_URL=https://www.bcv.org.ve/
-BINANCE_P2P_URL=https://www.binance.com/bapi/c2c/v1/public/c2c/agent/ad-list
+BINANCE_P2P_URL=https://p2p.binance.com/bapi/c2c/v2/friendly/c2c/adv/search
 ```
 
 Si no se definen estas variables, la aplicacion usa esos mismos valores por defecto.
+
+## Bancos en Binance P2P
+
+La tasa de Binance P2P se consulta filtrando por bancos especificos en
+[`app/utils/binance_p2p_list.py`](app/utils/binance_p2p_list.py), mediante el campo `payTypes`:
+
+```python
+"payTypes": ["BNC", "Banesco"],  # Solo BNC y Banesco
+```
+
+En este caso se usan **BNC** y **Banesco** porque son los bancos del autor, pero
+cualquiera puede cambiarlos por los suyos para ver los precios especificos de sus
+bancos. Solo hay que editar la lista `payTypes` con los identificadores que usa
+Binance, por ejemplo:
+
+```python
+"payTypes": ["Mercantil", "Provincial"],
+```
+
+Algunos identificadores comunes para Venezuela: `BancoDeVenezuela`, `Banesco`,
+`Mercantil`, `Provincial`, `BNC`, `BancoDelTesoro`. Si dejas la lista vacia
+(`"payTypes": []`), Binance devuelve anuncios de todos los bancos.
+
+Ademas, el campo `publisherType` controla el filtro de comerciantes verificados:
+`None` muestra a todos los anunciantes y `"merchant"` limita el resultado solo a
+comerciantes verificados.
 
 ## Ejecucion local
 
